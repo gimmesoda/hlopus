@@ -1,0 +1,7 @@
+/.vs/*
+
+# Direct CMake build
+/build/*
+
+# Build using Visual Studio
+/out/*
