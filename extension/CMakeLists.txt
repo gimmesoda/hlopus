@@ -46,6 +46,7 @@ if (WIN32)
     ${OPUS_SRC_DIR}/celt/entdec.c
     ${OPUS_SRC_DIR}/celt/entenc.c
     ${OPUS_SRC_DIR}/celt/kiss_fft.c
+    ${OPUS_SRC_DIR}/celt/mini_kfft.c
     ${OPUS_SRC_DIR}/celt/laplace.c
     ${OPUS_SRC_DIR}/celt/mathops.c
     ${OPUS_SRC_DIR}/celt/mdct.c
@@ -203,8 +204,8 @@ else()
     endif()
 
     ExternalProject_Add(libopus
-        URL https://github.com/xiph/opus/releases/download/v1.5.2/opus-1.5.2.tar.gz
-        URL_HASH SHA256=65c1d2f78b9f2fb20082c38cbe47c951ad5839345876e46941612ee87f9a7ce1
+        URL https://downloads.xiph.org/releases/opus/opus-1.6.1.tar.gz
+        URL_HASH SHA256=6ffcb593207be92584df15b32466ed64bbec99109f007c82205f0194572411a1
         CMAKE_ARGS
             ${CMAKE_COMMON_DEP_ARGS}
             -DBUILD_SHARED_LIBS=OFF

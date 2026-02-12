@@ -13,19 +13,18 @@ class Data extends hxd.snd.Data {
 		if (reader == null)
 			throw "Failed to decode Opus data";
 
-		var b = 0, f = 0, s = 0, c = 0;
-		opus_info(reader, b, f, s, c);
+		var f = 0, s = 0, c = 0;
+		opus_info(reader, f, s, c);
 		channels = c;
 		samples = s;
 		sampleFormat = I16;
-		samplingRate = f; // Always 48000 for Opus
+		samplingRate = f; // always 48000 for Opus
 	}
 
 	override function resample(rate:Int, format:hxd.snd.Data.SampleFormat, channels:Int):hxd.snd.Data {
 		switch (format) {
 			case I16 if (channels == this.channels && rate == this.samplingRate):
-				var g = new Data(bytes);
-				return g;
+				return new Data(bytes);
 			case F32 if (channels == this.channels && rate == this.samplingRate):
 				var g = new Data(bytes);
 				g.sampleFormat = F32;
@@ -74,8 +73,7 @@ class Data extends hxd.snd.Data {
 		return false;
 	}
 
-	@:hlNative("opus", "opus_info") static function opus_info(o:OpusFile, bitrate:hl.Ref<Int>, freq:hl.Ref<Int>, samples:hl.Ref<Int>,
-		channels:hl.Ref<Int>):Void {}
+	@:hlNative("opus", "opus_info") static function opus_info(o:OpusFile, freq:hl.Ref<Int>, samples:hl.Ref<Int>, channels:hl.Ref<Int>):Void {}
 
 	@:hlNative("opus", "opus_read") static function opus_read(o:OpusFile, output:hl.Bytes, size:Int, format:Int):Int {
 		return 0;

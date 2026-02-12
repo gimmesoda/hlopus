@@ -1,6 +1,5 @@
 package hxd.fmt.opus;
 
-import haxe.macro.Compiler;
 import haxe.macro.Context;
 import haxe.macro.Expr.Field;
 
@@ -45,6 +44,9 @@ class Macro {
 				ret: macro :Bool,
 				expr: macro {
 					if (bytes.length < 36)
+						return false;
+					// verify OGG magic bytes "OggS"
+					if (bytes.get(0) != 'O'.code || bytes.get(1) != 'g'.code || bytes.get(2) != 'g'.code || bytes.get(3) != 'S'.code)
 						return false;
 					var numSegments = bytes.get(26);
 					var dataOffset = 27 + numSegments;
