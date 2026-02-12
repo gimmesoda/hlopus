@@ -24,7 +24,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1B98D162-C299-33EC-AE68-BA869C6AD760}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
     <ProjectName>extension</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
@@ -56,29 +56,33 @@
   <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="UserMacros">
+    <HASHLINK_SRC Condition="'$(HASHLINK_SRC)'==''">C:\HaxeToolkit\hashlink</HASHLINK_SRC>
+  </PropertyGroup>
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\sadsoda\Documents\projects\hlopus\extension\Debug\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">extension.dir\Debug\</IntDir>
+    <IncludePath>$(HASHLINK_SRC)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(HASHLINK_SRC);$(LibraryPath)</LibraryPath>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">extension.dir\$(Configuration)\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">opus</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.hdll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\sadsoda\Documents\projects\hlopus\extension\Release\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">extension.dir\Release\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">extension.dir\$(Configuration)\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">opus</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.hdll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\sadsoda\Documents\projects\hlopus\extension\MinSizeRel\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">extension.dir\MinSizeRel\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">extension.dir\$(Configuration)\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">opus</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.hdll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\sadsoda\Documents\projects\hlopus\extension\RelWithDebInfo\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">extension.dir\RelWithDebInfo\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">extension.dir\$(Configuration)\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">opus</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.hdll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
@@ -87,22 +91,17 @@
   <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\HaxeToolkit\hashlink\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
-      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";extension_EXPORTS</PreprocessorDefinitions>
@@ -111,10 +110,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR=\"Debug\";extension_EXPORTS</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\HaxeToolkit\hashlink\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\HaxeToolkit\hashlink\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -122,18 +121,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>C:\HaxeToolkit\hashlink\libhl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>libhl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <DataExecutionPrevention></DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
-      <ImportLibrary>C:/Users/sadsoda/Documents/projects/hlopus/extension/Debug/opus.lib</ImportLibrary>
-      <LinkErrorReporting></LinkErrorReporting>
-      <ProgramDataBaseFile>C:/Users/sadsoda/Documents/projects/hlopus/extension/Debug/opus.pdb</ProgramDataBaseFile>
-      <RandomizedBaseAddress></RandomizedBaseAddress>
-      <SubSystem></SubSystem>
+      <ImportLibrary>$(OutDir)opus.lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)opus.pdb</ProgramDataBaseFile>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -141,21 +135,16 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\HaxeToolkit\hashlink\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
-      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR="Release";extension_EXPORTS</PreprocessorDefinitions>
@@ -166,10 +155,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR=\"Release\";extension_EXPORTS</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\HaxeToolkit\hashlink\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\HaxeToolkit\hashlink\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -177,18 +166,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>C:\HaxeToolkit\hashlink\libhl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>libhl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <DataExecutionPrevention></DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
-      <ImportLibrary>C:/Users/sadsoda/Documents/projects/hlopus/extension/Release/opus.lib</ImportLibrary>
-      <LinkErrorReporting></LinkErrorReporting>
-      <ProgramDataBaseFile>C:/Users/sadsoda/Documents/projects/hlopus/extension/Release/opus.pdb</ProgramDataBaseFile>
-      <RandomizedBaseAddress></RandomizedBaseAddress>
-      <SubSystem></SubSystem>
+      <ImportLibrary>$(OutDir)opus.lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)opus.pdb</ProgramDataBaseFile>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -196,21 +180,16 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\HaxeToolkit\hashlink\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
       <Optimization>MinSpace</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
-      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR="MinSizeRel";extension_EXPORTS</PreprocessorDefinitions>
@@ -221,10 +200,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR=\"MinSizeRel\";extension_EXPORTS</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\HaxeToolkit\hashlink\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\HaxeToolkit\hashlink\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -232,18 +211,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>C:\HaxeToolkit\hashlink\libhl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>libhl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <DataExecutionPrevention></DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
-      <ImportLibrary>C:/Users/sadsoda/Documents/projects/hlopus/extension/MinSizeRel/opus.lib</ImportLibrary>
-      <LinkErrorReporting></LinkErrorReporting>
-      <ProgramDataBaseFile>C:/Users/sadsoda/Documents/projects/hlopus/extension/MinSizeRel/opus.pdb</ProgramDataBaseFile>
-      <RandomizedBaseAddress></RandomizedBaseAddress>
-      <SubSystem></SubSystem>
+      <ImportLibrary>$(OutDir)opus.lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)opus.pdb</ProgramDataBaseFile>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -251,22 +225,17 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\HaxeToolkit\hashlink\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
-      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR="RelWithDebInfo";extension_EXPORTS</PreprocessorDefinitions>
@@ -275,10 +244,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR=\"RelWithDebInfo\";extension_EXPORTS</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\HaxeToolkit\hashlink\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\HaxeToolkit\hashlink\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\include;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float;C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -286,263 +255,193 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>C:\HaxeToolkit\hashlink\libhl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>libhl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <DataExecutionPrevention></DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
-      <ImportLibrary>C:/Users/sadsoda/Documents/projects/hlopus/extension/RelWithDebInfo/opus.lib</ImportLibrary>
-      <LinkErrorReporting></LinkErrorReporting>
-      <ProgramDataBaseFile>C:/Users/sadsoda/Documents/projects/hlopus/extension/RelWithDebInfo/opus.pdb</ProgramDataBaseFile>
-      <RandomizedBaseAddress></RandomizedBaseAddress>
-      <SubSystem></SubSystem>
+      <ImportLibrary>$(OutDir)opus.lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)opus.pdb</ProgramDataBaseFile>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\CMakeLists.txt">
-      <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/sadsoda/Documents/projects/hlopus/extension/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/sadsoda/Documents/projects/hlopus -BC:/Users/sadsoda/Documents/projects/hlopus --check-stamp-file C:/Users/sadsoda/Documents/projects/hlopus/extension/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\sadsoda\Documents\projects\hlopus\extension\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/sadsoda/Documents/projects/hlopus/extension/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/sadsoda/Documents/projects/hlopus -BC:/Users/sadsoda/Documents/projects/hlopus --check-stamp-file C:/Users/sadsoda/Documents/projects/hlopus/extension/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\sadsoda\Documents\projects\hlopus\extension\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/sadsoda/Documents/projects/hlopus/extension/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/sadsoda/Documents/projects/hlopus -BC:/Users/sadsoda/Documents/projects/hlopus --check-stamp-file C:/Users/sadsoda/Documents/projects/hlopus/extension/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\sadsoda\Documents\projects\hlopus\extension\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/sadsoda/Documents/projects/hlopus/extension/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/sadsoda/Documents/projects/hlopus -BC:/Users/sadsoda/Documents/projects/hlopus --check-stamp-file C:/Users/sadsoda/Documents/projects/hlopus/extension/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\sadsoda\Documents\projects\hlopus\extension\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\extension.cpp" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile\opusfile.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile\info.c">
+    <ClCompile Include="extension.cpp" />
+    <ClCompile Include="lib\opusfile\opusfile.c" />
+    <ClCompile Include="lib\opusfile\info.c">
       <ObjectFileName>$(IntDir)/lib/opusfile/info.c.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile\stream.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opusfile\internal.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\opus.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\opus_decoder.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\opus_encoder.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\extensions.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\opus_multistream.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\opus_multistream_encoder.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\opus_multistream_decoder.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\repacketizer.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\opus_projection_encoder.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\opus_projection_decoder.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\mapping_matrix.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\analysis.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\mlp.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\src\mlp_data.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\bands.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\celt.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\celt_encoder.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\celt_decoder.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\cwrs.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\entcode.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\entdec.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\entenc.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\kiss_fft.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\laplace.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\mathops.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\mdct.c">
+    <ClCompile Include="lib\opusfile\stream.c" />
+    <ClCompile Include="lib\opusfile\internal.c" />
+    <ClCompile Include="lib\opus\src\opus.c" />
+    <ClCompile Include="lib\opus\src\opus_decoder.c" />
+    <ClCompile Include="lib\opus\src\opus_encoder.c" />
+    <ClCompile Include="lib\opus\src\extensions.c" />
+    <ClCompile Include="lib\opus\src\opus_multistream.c" />
+    <ClCompile Include="lib\opus\src\opus_multistream_encoder.c" />
+    <ClCompile Include="lib\opus\src\opus_multistream_decoder.c" />
+    <ClCompile Include="lib\opus\src\repacketizer.c" />
+    <ClCompile Include="lib\opus\src\opus_projection_encoder.c" />
+    <ClCompile Include="lib\opus\src\opus_projection_decoder.c" />
+    <ClCompile Include="lib\opus\src\mapping_matrix.c" />
+    <ClCompile Include="lib\opus\src\analysis.c" />
+    <ClCompile Include="lib\opus\src\mlp.c" />
+    <ClCompile Include="lib\opus\src\mlp_data.c" />
+    <ClCompile Include="lib\opus\celt\bands.c" />
+    <ClCompile Include="lib\opus\celt\celt.c" />
+    <ClCompile Include="lib\opus\celt\celt_encoder.c" />
+    <ClCompile Include="lib\opus\celt\celt_decoder.c" />
+    <ClCompile Include="lib\opus\celt\cwrs.c" />
+    <ClCompile Include="lib\opus\celt\entcode.c" />
+    <ClCompile Include="lib\opus\celt\entdec.c" />
+    <ClCompile Include="lib\opus\celt\entenc.c" />
+    <ClCompile Include="lib\opus\celt\kiss_fft.c" />
+    <ClCompile Include="lib\opus\celt\laplace.c" />
+    <ClCompile Include="lib\opus\celt\mathops.c" />
+    <ClCompile Include="lib\opus\celt\mdct.c">
       <ObjectFileName>$(IntDir)/lib/opus/celt/mdct.c.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\modes.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\pitch.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\celt_lpc.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\quant_bands.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\rate.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\celt\vq.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\CNG.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\code_signs.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\init_decoder.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\decode_core.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\decode_frame.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\decode_parameters.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\decode_indices.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\decode_pulses.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\decoder_set_fs.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\dec_API.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\enc_API.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\encode_indices.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\encode_pulses.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\gain_quant.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\interpolate.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\LP_variable_cutoff.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\NLSF_decode.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\NSQ.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\NSQ_del_dec.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\PLC.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\shell_coder.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\tables_gain.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\tables_LTP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\tables_NLSF_CB_NB_MB.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\tables_NLSF_CB_WB.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\tables_other.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\tables_pitch_lag.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\tables_pulses_per_block.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\VAD.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\control_audio_bandwidth.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\quant_LTP_gains.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\VQ_WMat_EC.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\HP_variable_cutoff.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\NLSF_encode.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\NLSF_VQ.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\NLSF_unpack.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\NLSF_del_dec_quant.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\process_NLSFs.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\stereo_LR_to_MS.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\stereo_MS_to_LR.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\check_control_input.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\control_SNR.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\init_encoder.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\control_codec.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\A2NLSF.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\ana_filt_bank_1.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\biquad_alt.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\bwexpander_32.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\bwexpander.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\debug.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\decode_pitch.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\inner_prod_aligned.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\lin2log.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\log2lin.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\LPC_analysis_filter.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\LPC_inv_pred_gain.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\table_LSF_cos.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\NLSF2A.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\NLSF_stabilize.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\NLSF_VQ_weights_laroia.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\pitch_est_tables.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\resampler.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\resampler_down2_3.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\resampler_down2.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\resampler_private_AR2.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\resampler_private_down_FIR.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\resampler_private_IIR_FIR.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\resampler_private_up2_HQ.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\resampler_rom.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\sigm_Q15.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\sort.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\sum_sqr_shift.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\stereo_decode_pred.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\stereo_encode_pred.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\stereo_find_predictor.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\stereo_quant_pred.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\LPC_fit.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\apply_sine_window_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\corrMatrix_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\encode_frame_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\find_LPC_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\find_LTP_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\find_pitch_lags_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\find_pred_coefs_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\LPC_analysis_filter_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\LTP_analysis_filter_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\LTP_scale_ctrl_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\noise_shape_analysis_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\process_gains_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\regularize_correlations_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\residual_energy_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\warped_autocorrelation_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\wrappers_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\autocorrelation_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\burg_modified_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\bwexpander_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\energy_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\inner_product_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\k2a_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\LPC_inv_pred_gain_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\pitch_analysis_core_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\scale_copy_vector_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\scale_vector_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\schur_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\opus\silk\float\sort_FLP.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\bitrate.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\bitwise.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\block.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\codebook.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\envelope.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\floor0.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\floor1.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\framing.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\info.c">
+    <ClCompile Include="lib\opus\celt\modes.c" />
+    <ClCompile Include="lib\opus\celt\pitch.c" />
+    <ClCompile Include="lib\opus\celt\celt_lpc.c" />
+    <ClCompile Include="lib\opus\celt\quant_bands.c" />
+    <ClCompile Include="lib\opus\celt\rate.c" />
+    <ClCompile Include="lib\opus\celt\vq.c" />
+    <ClCompile Include="lib\opus\silk\CNG.c" />
+    <ClCompile Include="lib\opus\silk\code_signs.c" />
+    <ClCompile Include="lib\opus\silk\init_decoder.c" />
+    <ClCompile Include="lib\opus\silk\decode_core.c" />
+    <ClCompile Include="lib\opus\silk\decode_frame.c" />
+    <ClCompile Include="lib\opus\silk\decode_parameters.c" />
+    <ClCompile Include="lib\opus\silk\decode_indices.c" />
+    <ClCompile Include="lib\opus\silk\decode_pulses.c" />
+    <ClCompile Include="lib\opus\silk\decoder_set_fs.c" />
+    <ClCompile Include="lib\opus\silk\dec_API.c" />
+    <ClCompile Include="lib\opus\silk\enc_API.c" />
+    <ClCompile Include="lib\opus\silk\encode_indices.c" />
+    <ClCompile Include="lib\opus\silk\encode_pulses.c" />
+    <ClCompile Include="lib\opus\silk\gain_quant.c" />
+    <ClCompile Include="lib\opus\silk\interpolate.c" />
+    <ClCompile Include="lib\opus\silk\LP_variable_cutoff.c" />
+    <ClCompile Include="lib\opus\silk\NLSF_decode.c" />
+    <ClCompile Include="lib\opus\silk\NSQ.c" />
+    <ClCompile Include="lib\opus\silk\NSQ_del_dec.c" />
+    <ClCompile Include="lib\opus\silk\PLC.c" />
+    <ClCompile Include="lib\opus\silk\shell_coder.c" />
+    <ClCompile Include="lib\opus\silk\tables_gain.c" />
+    <ClCompile Include="lib\opus\silk\tables_LTP.c" />
+    <ClCompile Include="lib\opus\silk\tables_NLSF_CB_NB_MB.c" />
+    <ClCompile Include="lib\opus\silk\tables_NLSF_CB_WB.c" />
+    <ClCompile Include="lib\opus\silk\tables_other.c" />
+    <ClCompile Include="lib\opus\silk\tables_pitch_lag.c" />
+    <ClCompile Include="lib\opus\silk\tables_pulses_per_block.c" />
+    <ClCompile Include="lib\opus\silk\VAD.c" />
+    <ClCompile Include="lib\opus\silk\control_audio_bandwidth.c" />
+    <ClCompile Include="lib\opus\silk\quant_LTP_gains.c" />
+    <ClCompile Include="lib\opus\silk\VQ_WMat_EC.c" />
+    <ClCompile Include="lib\opus\silk\HP_variable_cutoff.c" />
+    <ClCompile Include="lib\opus\silk\NLSF_encode.c" />
+    <ClCompile Include="lib\opus\silk\NLSF_VQ.c" />
+    <ClCompile Include="lib\opus\silk\NLSF_unpack.c" />
+    <ClCompile Include="lib\opus\silk\NLSF_del_dec_quant.c" />
+    <ClCompile Include="lib\opus\silk\process_NLSFs.c" />
+    <ClCompile Include="lib\opus\silk\stereo_LR_to_MS.c" />
+    <ClCompile Include="lib\opus\silk\stereo_MS_to_LR.c" />
+    <ClCompile Include="lib\opus\silk\check_control_input.c" />
+    <ClCompile Include="lib\opus\silk\control_SNR.c" />
+    <ClCompile Include="lib\opus\silk\init_encoder.c" />
+    <ClCompile Include="lib\opus\silk\control_codec.c" />
+    <ClCompile Include="lib\opus\silk\A2NLSF.c" />
+    <ClCompile Include="lib\opus\silk\ana_filt_bank_1.c" />
+    <ClCompile Include="lib\opus\silk\biquad_alt.c" />
+    <ClCompile Include="lib\opus\silk\bwexpander_32.c" />
+    <ClCompile Include="lib\opus\silk\bwexpander.c" />
+    <ClCompile Include="lib\opus\silk\debug.c" />
+    <ClCompile Include="lib\opus\silk\decode_pitch.c" />
+    <ClCompile Include="lib\opus\silk\inner_prod_aligned.c" />
+    <ClCompile Include="lib\opus\silk\lin2log.c" />
+    <ClCompile Include="lib\opus\silk\log2lin.c" />
+    <ClCompile Include="lib\opus\silk\LPC_analysis_filter.c" />
+    <ClCompile Include="lib\opus\silk\LPC_inv_pred_gain.c" />
+    <ClCompile Include="lib\opus\silk\table_LSF_cos.c" />
+    <ClCompile Include="lib\opus\silk\NLSF2A.c" />
+    <ClCompile Include="lib\opus\silk\NLSF_stabilize.c" />
+    <ClCompile Include="lib\opus\silk\NLSF_VQ_weights_laroia.c" />
+    <ClCompile Include="lib\opus\silk\pitch_est_tables.c" />
+    <ClCompile Include="lib\opus\silk\resampler.c" />
+    <ClCompile Include="lib\opus\silk\resampler_down2_3.c" />
+    <ClCompile Include="lib\opus\silk\resampler_down2.c" />
+    <ClCompile Include="lib\opus\silk\resampler_private_AR2.c" />
+    <ClCompile Include="lib\opus\silk\resampler_private_down_FIR.c" />
+    <ClCompile Include="lib\opus\silk\resampler_private_IIR_FIR.c" />
+    <ClCompile Include="lib\opus\silk\resampler_private_up2_HQ.c" />
+    <ClCompile Include="lib\opus\silk\resampler_rom.c" />
+    <ClCompile Include="lib\opus\silk\sigm_Q15.c" />
+    <ClCompile Include="lib\opus\silk\sort.c" />
+    <ClCompile Include="lib\opus\silk\sum_sqr_shift.c" />
+    <ClCompile Include="lib\opus\silk\stereo_decode_pred.c" />
+    <ClCompile Include="lib\opus\silk\stereo_encode_pred.c" />
+    <ClCompile Include="lib\opus\silk\stereo_find_predictor.c" />
+    <ClCompile Include="lib\opus\silk\stereo_quant_pred.c" />
+    <ClCompile Include="lib\opus\silk\LPC_fit.c" />
+    <ClCompile Include="lib\opus\silk\float\apply_sine_window_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\corrMatrix_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\encode_frame_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\find_LPC_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\find_LTP_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\find_pitch_lags_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\find_pred_coefs_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\LPC_analysis_filter_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\LTP_analysis_filter_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\LTP_scale_ctrl_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\noise_shape_analysis_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\process_gains_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\regularize_correlations_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\residual_energy_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\warped_autocorrelation_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\wrappers_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\autocorrelation_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\burg_modified_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\bwexpander_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\energy_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\inner_product_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\k2a_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\LPC_inv_pred_gain_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\pitch_analysis_core_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\scale_copy_vector_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\scale_vector_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\schur_FLP.c" />
+    <ClCompile Include="lib\opus\silk\float\sort_FLP.c" />
+    <ClCompile Include="lib\vorbis\bitrate.c" />
+    <ClCompile Include="lib\vorbis\bitwise.c" />
+    <ClCompile Include="lib\vorbis\block.c" />
+    <ClCompile Include="lib\vorbis\codebook.c" />
+    <ClCompile Include="lib\vorbis\envelope.c" />
+    <ClCompile Include="lib\vorbis\floor0.c" />
+    <ClCompile Include="lib\vorbis\floor1.c" />
+    <ClCompile Include="lib\vorbis\framing.c" />
+    <ClCompile Include="lib\vorbis\info.c">
       <ObjectFileName>$(IntDir)/lib/vorbis/info.c.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\lookup.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\lpc.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\lsp.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\mapping0.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\mdct.c">
+    <ClCompile Include="lib\vorbis\lookup.c" />
+    <ClCompile Include="lib\vorbis\lpc.c" />
+    <ClCompile Include="lib\vorbis\lsp.c" />
+    <ClCompile Include="lib\vorbis\mapping0.c" />
+    <ClCompile Include="lib\vorbis\mdct.c">
       <ObjectFileName>$(IntDir)/lib/vorbis/mdct.c.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\psy.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\registry.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\res0.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\sharedbook.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\smallft.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\synthesis.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\vorbisfile.c" />
-    <ClCompile Include="C:\Users\sadsoda\Documents\projects\hlopus\extension\lib\vorbis\window.c" />
+    <ClCompile Include="lib\vorbis\psy.c" />
+    <ClCompile Include="lib\vorbis\registry.c" />
+    <ClCompile Include="lib\vorbis\res0.c" />
+    <ClCompile Include="lib\vorbis\sharedbook.c" />
+    <ClCompile Include="lib\vorbis\smallft.c" />
+    <ClCompile Include="lib\vorbis\synthesis.c" />
+    <ClCompile Include="lib\vorbis\vorbisfile.c" />
+    <ClCompile Include="lib\vorbis\window.c" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="C:\Users\sadsoda\Documents\projects\hlopus\ZERO_CHECK.vcxproj">
-      <Project>{468D76E1-E321-3801-8BAA-A20B78F90A10}</Project>
-      <Name>ZERO_CHECK</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

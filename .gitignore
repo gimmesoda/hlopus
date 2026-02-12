@@ -1,7 +1,15 @@
-/.vs/*
+/.vs/
 
 # Direct CMake build
-/build/*
+/build/
 
 # Build using Visual Studio
-/out/*
+/out/
+
+# MSVC build artifacts
+extension/Debug/
+extension/Release/
+extension/MinSizeRel/
+extension/RelWithDebInfo/
+extension/extension.dir/
+*.user
