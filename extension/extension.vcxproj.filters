@@ -85,6 +85,9 @@
     <ClCompile Include="lib\opus\celt\kiss_fft.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lib\opus\celt\mini_kfft.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="lib\opus\celt\laplace.c">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -104,12 +104,13 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";extension_EXPORTS</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4305;4244;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";_CRT_SECURE_NO_WARNINGS;extension_EXPORTS</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR=\"Debug\";extension_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR=\"Debug\";_CRT_SECURE_NO_WARNINGS;extension_EXPORTS</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -147,14 +148,15 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR="Release";extension_EXPORTS</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4305;4244;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR="Release";_CRT_SECURE_NO_WARNINGS;extension_EXPORTS</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR=\"Release\";extension_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR=\"Release\";_CRT_SECURE_NO_WARNINGS;extension_EXPORTS</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -192,14 +194,15 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR="MinSizeRel";extension_EXPORTS</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4305;4244;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR="MinSizeRel";_CRT_SECURE_NO_WARNINGS;extension_EXPORTS</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR=\"MinSizeRel\";extension_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR=\"MinSizeRel\";_CRT_SECURE_NO_WARNINGS;extension_EXPORTS</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -238,12 +241,13 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR="RelWithDebInfo";extension_EXPORTS</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4305;4244;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR="RelWithDebInfo";_CRT_SECURE_NO_WARNINGS;extension_EXPORTS</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR=\"RelWithDebInfo\";extension_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;OPUS_BUILD;USE_ALLOCA;HAVE_LRINTF;HAVE_CONFIG_H;CMAKE_INTDIR=\"RelWithDebInfo\";_CRT_SECURE_NO_WARNINGS;extension_EXPORTS</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>lib\opusfile;lib\opus\include;lib\opus;lib\opus\celt;lib\opus\silk;lib\opus\silk\float;lib\vorbis;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -298,6 +302,7 @@
     <ClCompile Include="lib\opus\celt\entdec.c" />
     <ClCompile Include="lib\opus\celt\entenc.c" />
     <ClCompile Include="lib\opus\celt\kiss_fft.c" />
+    <ClCompile Include="lib\opus\celt\mini_kfft.c" />
     <ClCompile Include="lib\opus\celt\laplace.c" />
     <ClCompile Include="lib\opus\celt\mathops.c" />
     <ClCompile Include="lib\opus\celt\mdct.c">

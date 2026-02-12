@@ -4,7 +4,7 @@
 #include <opusfile.h>
 
 typedef struct _fmt_opus fmt_opus;
-typedef struct _fmt_opus {
+struct _fmt_opus {
 	void (*finalize)(fmt_opus*);
 	OggOpusFile* f;
 	char* bytes;
@@ -31,18 +31,18 @@ static int opus_memseek(void* stream, opus_int64 _offset, int whence) {
 	fmt_opus* o = (fmt_opus*)stream;
 	int offset = (int)_offset;
 	switch (whence) {
-	case SEEK_SET:
-		if (offset < 0 || offset > o->size) return -1;
-		o->pos = offset;
-		break;
-	case SEEK_CUR:
-		if (o->pos + offset < 0 || o->pos + offset > o->size) return -1;
-		o->pos += offset;
-		break;
-	case SEEK_END:
-		if (o->size + offset < 0 || o->size + offset > o->size) return -1;
-		o->pos = o->size + offset;
-		break;
+		case SEEK_SET:
+			if (offset < 0 || offset > o->size) return -1;
+			o->pos = offset;
+			break;
+		case SEEK_CUR:
+			if (o->pos + offset < 0 || o->pos + offset > o->size) return -1;
+			o->pos += offset;
+			break;
+		case SEEK_END:
+			if (o->size + offset < 0 || o->size + offset > o->size) return -1;
+			o->pos = o->size + offset;
+			break;
 	}
 	return 0;
 }
@@ -127,8 +127,8 @@ HL_PRIM int HL_NAME(opus_read)(fmt_opus* o, char* output, int size, int format) 
 
 #define _OPUS _ABSTRACT(fmt_opus)
 
-DEFINE_PRIM(_OPUS, opus_open, _BYTES _I32);
-DEFINE_PRIM(_VOID, opus_info, _OPUS _REF(_I32) _REF(_I32) _REF(_I32) _REF(_I32));
-DEFINE_PRIM(_I32, opus_tell, _OPUS);
-DEFINE_PRIM(_BOOL, opus_seek, _OPUS _I32);
-DEFINE_PRIM(_I32, opus_read, _OPUS _BYTES _I32 _I32);
+DEFINE_PRIM(_OPUS,	opus_open, _BYTES	_I32);
+DEFINE_PRIM(_VOID,	opus_info, _OPUS	_REF(_I32) _REF(_I32) _REF(_I32) _REF(_I32));
+DEFINE_PRIM(_I32,	opus_tell, _OPUS);
+DEFINE_PRIM(_BOOL,	opus_seek, _OPUS	_I32);
+DEFINE_PRIM(_I32,	opus_read, _OPUS	_BYTES _I32 _I32);

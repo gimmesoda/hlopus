@@ -17,4 +17,4 @@
 #define ENABLE_HARDENING 1
 
 /* Package info */
-#define PACKAGE_VERSION "1.5.2"
+#define PACKAGE_VERSION "1.6.1"
