@@ -1,0 +1,71 @@
+name: Build Windows Release
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+  release:
+    types:
+      - published
+
+jobs:
+  windows-x64:
+    runs-on: windows-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: amd64
+
+      - name: Download HashLink
+        shell: pwsh
+        run: |
+          $release = Invoke-RestMethod -Uri 'https://api.github.com/repos/HaxeFoundation/hashlink/releases/latest'
+          $asset = $release.assets | Where-Object { $_.name -like 'hashlink-*-win.zip' } | Select-Object -First 1
+          if (-not $asset) {
+            throw 'Could not find a Windows HashLink release asset.'
+          }
+
+          Invoke-WebRequest -Uri $asset.browser_download_url -OutFile 'hashlink-win.zip'
+          Expand-Archive -LiteralPath 'hashlink-win.zip' -DestinationPath 'hashlink' -Force
+
+          $hashlinkDir = Get-ChildItem -Path 'hashlink' -Directory | Select-Object -First 1
+          if (-not $hashlinkDir) {
+            throw 'Could not locate the extracted HashLink directory.'
+          }
+
+          "HASHLINK=$($hashlinkDir.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Configure CMake
+        run: cmake --preset release
+
+      - name: Build native release
+        run: cmake --build out/build/release --config Release
+
+      - name: Install release files
+        run: cmake --install out/build/release --config Release --prefix dist/native
+
+      - name: Verify packaged files
+        shell: pwsh
+        run: |
+          if (-not (Test-Path 'dist/native/opus.hdll')) {
+            throw 'Missing dist/native/opus.hdll'
+          }
+          if (-not (Test-Path 'dist/native/opus.lib')) {
+            throw 'Missing dist/native/opus.lib'
+          }
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: hlopus-windows-x64
+          path: dist/native

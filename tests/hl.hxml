@@ -1,0 +1,5 @@
+-lib hlopenal
+-lib hlopus
+-cp src
+-main HashlinkSmokeTest
+-hl hl_smoke.hl

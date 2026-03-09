@@ -1,4 +1,1 @@
---macro addMetadata('@:build(hxd.fmt.opus.Macro.buildSoundFormat())', 'hxd.res.SoundFormat')
---macro addMetadata('@:build(hxd.fmt.opus.Macro.buildSound())', 'hxd.res.Sound')
-
---macro hxd.res.Config.addExtension('opus', 'hxd.res.Sound')
+--macro hlopus.Boot.setup()
