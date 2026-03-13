@@ -1,38 +1,71 @@
 # hlopus
 
-Native support for the Opus audio codec for Heaps.io
+Native Opus decoding for HashLink, with optional Heaps integration.
 
 The library is based on [dtwotwo's pull request](https://github.com/HeapsIO/heaps/pull/1335).
 
-> [!WARNING]
-To use the library, you need to [compile](#compilation) opus.hdll
+## What it does
+
+- adds `hlopus.Decoder` for plain HashLink projects
+- adds Heaps integration so `.opus` resources are treated as `hxd.res.Sound`
 
 ## Possible questions
 
 ### Why should I use Opus?
 
-With the same quality, Opus takes up 15-25% less space than Ogg, which is especially important if there are a lot of sounds in the game
+With the same quality, Opus usually takes 15-25% less space than Ogg, which is especially useful when a project has a lot of audio assets.
 
-### How will this change the way sounds are managed?
+## Plain HashLink usage
 
-After installation, hxd.Res recognizes .opus files as `hxd.res.Sound`, so working with them is no different from other formats!
+```haxe
+final decoder = new hlopus.Decoder(sys.io.File.getBytes("music.opus"));
+final pcm = decoder.decodeAll();
+```
 
-## Compilation
+`decodeAll()` returns interleaved PCM. The default format is 16-bit signed samples.
 
-The library can be compiled in two ways
+## Heaps usage
 
-### Using Visual Studio
+If Heaps is present, `.opus` files are recognized as `hxd.res.Sound`, so you can use them like other sound resources:
 
-Just open the folder in Visual Studio and run the build
+```haxe
+final sound = hxd.Res.music;
+final channel = sound.play();
+```
 
-### Direct CMake build
+## Build
 
-If you use Linux or do not have Visual Studio, you can go this way
+The native build uses the bundled codec sources from `extension/lib`, so you do not need to wire Opus/Vorbis/Ogg into CMake manually.
 
-Make sure you have CMake 3.10+ installed, then run the following commands:
+Requirements:
+
+- CMake 3.10+
+- HashLink installed
+- `HASHLINK` environment variable pointing to your HashLink folder
+
+### Local build
+
+The project includes a single Windows preset in `CMakePresets.json`.
 
 ```sh
-mkdir build
-cd build
-cmake build ..
+cmake --preset release
+cmake --build out/build/release --config Release
 ```
+
+If you use Visual Studio, opening the folder is enough - it uses the same CMake project and presets.
+
+### Outputs
+
+The native target produces:
+
+- `opus.hdll`
+- `opus.lib` on Windows
+
+To run a HashLink app with `hlopus`, place `opus.hdll` next to your `.hl` output, or otherwise make sure it is available in the current working directory / HashLink load path.
+
+You can build it locally with CMake or download it from the GitHub Actions artifact and copy `opus.hdll` from there.
+
+## TODO
+
+- Linux support
+- macOS support
