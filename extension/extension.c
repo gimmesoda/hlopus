@@ -1,7 +1,7 @@
 #define HL_NAME(n) opus_##n
 
+#include <limits.h>
 #include <stdbool.h>
-#include <stdio.h>
 #include <string.h>
 
 #include <hl.h>
@@ -11,7 +11,9 @@ typedef struct fmt_opus {
 	void (*finalize)(struct fmt_opus *);
 	OggOpusFile *f;
 	char *bytes;
+	int channels;
 	int pos;
+	int samples;
 	int size;
 } fmt_opus;
 
@@ -77,23 +79,37 @@ HL_PRIM fmt_opus *HL_NAME(opus_open)(char *bytes, int size) {
 
 	o->finalize = NULL;
 	o->bytes = bytes;
+	o->channels = 0;
 	o->size = size;
 	o->pos = 0;
+	o->samples = 0;
 	o->f = op_open_callbacks(o, &OPUS_CALLBACKS_MEMORY, NULL, 0, &error);
 
 	if (error != 0 || o->f == NULL)
 		return NULL;
+
+	{
+		const OpusHead *head = op_head(o->f, -1);
+		opus_int64 total_samples = op_pcm_total(o->f, -1);
+
+		if (head == NULL || total_samples < 0 || total_samples > INT_MAX) {
+			op_free(o->f);
+			o->f = NULL;
+			return NULL;
+		}
+
+		o->channels = head->channel_count;
+		o->samples = (int)total_samples;
+	}
 
 	o->finalize = opus_finalize;
 	return o;
 }
 
 HL_PRIM void HL_NAME(opus_info)(fmt_opus *o, int *freq, int *samples, int *channels) {
-	const OpusHead *head = op_head(o->f, -1);
-
 	*freq = 48000;
-	*channels = head->channel_count;
-	*samples = (int)op_pcm_total(o->f, -1);
+	*channels = o->channels;
+	*samples = o->samples;
 }
 
 HL_PRIM int HL_NAME(opus_tell)(fmt_opus *o) {
@@ -106,9 +122,12 @@ HL_PRIM bool HL_NAME(opus_seek)(fmt_opus *o, int sample) {
 
 HL_PRIM int HL_NAME(opus_read)(fmt_opus *o, char *output, int size, int format) {
 	int total = 0;
-	const OpusHead *head = op_head(o->f, -1);
-	int channels = head->channel_count;
+	int channels = o->channels;
 	int bytes_per_sample = (format == 2) ? 2 : 4;
+
+	if (channels <= 0)
+		return -1;
+
 	int samples_requested = size / (bytes_per_sample * channels);
 
 	hl_blocking(true);

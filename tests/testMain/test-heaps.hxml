@@ -6,4 +6,3 @@
 -main HeapsSmokeTest
 -hl heaps_smoke.hl
 -D windowSize=800x600
--D resPath=tests/res

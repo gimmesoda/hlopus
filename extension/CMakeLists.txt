@@ -26,13 +26,17 @@ set(OPUSFILE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib/opusfile")
 set(OPUS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib/opus")
 set(VORBIS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib/vorbis")
 
-file(GLOB OPUSFILE_SOURCES "${OPUSFILE_DIR}/*.c")
-file(GLOB OPUS_SOURCES
+if (HASHLINK_ROOT STREQUAL "" OR NOT EXISTS "${HASHLINK_ROOT}")
+  message(FATAL_ERROR "HASHLINK environment variable must point to your HashLink directory.")
+endif()
+
+file(GLOB OPUSFILE_SOURCES CONFIGURE_DEPENDS "${OPUSFILE_DIR}/*.c")
+file(GLOB OPUS_SOURCES CONFIGURE_DEPENDS
   "${OPUS_DIR}/src/*.c"
   "${OPUS_DIR}/celt/*.c"
   "${OPUS_DIR}/silk/*.c"
   "${OPUS_DIR}/silk/float/*.c")
-file(GLOB VORBIS_SOURCES "${VORBIS_DIR}/*.c")
+file(GLOB VORBIS_SOURCES CONFIGURE_DEPENDS "${VORBIS_DIR}/*.c")
 
 set(VENDORED_SOURCES
   ${OPUSFILE_SOURCES}

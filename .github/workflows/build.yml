@@ -11,8 +11,11 @@ on:
     types:
       - published
 
+permissions:
+  contents: write
+
 jobs:
-  windows-x64:
+  windows:
     runs-on: windows-latest
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -48,11 +51,15 @@ jobs:
       - name: Configure CMake
         run: cmake --preset release
 
-      - name: Build native release
+      - name: Build release
         run: cmake --build out/build/release --config Release
 
-      - name: Install release files
-        run: cmake --install out/build/release --config Release --prefix dist/native
+      - name: Package release files
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path 'dist/native' | Out-Null
+          Copy-Item 'out/build/release/extension/opus.hdll' 'dist/native/opus.hdll'
+          Copy-Item 'out/build/release/extension/opus.lib' 'dist/native/opus.lib'
 
       - name: Verify packaged files
         shell: pwsh
@@ -64,8 +71,31 @@ jobs:
             throw 'Missing dist/native/opus.lib'
           }
 
+      - name: Create release zip
+        shell: pwsh
+        run: |
+          if (Test-Path 'hlopus-windows.zip') {
+            Remove-Item 'hlopus-windows.zip' -Force
+          }
+          Compress-Archive -Path 'dist/native/*' -DestinationPath 'hlopus-windows.zip'
+
       - name: Upload artifact
         uses: actions/upload-artifact@v5
         with:
-          name: hlopus-windows-x64
+          name: hlopus-windows
           path: dist/native
+
+      - name: Update nightly release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: andelf/nightly-release@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: nightly
+          name: Nightly Release
+          body: |
+            Automated nightly Windows build of `hlopus`.
+
+            Download `hlopus-windows.zip` and extract it where you want to keep the native files.
+          files: |
+            hlopus-windows.zip

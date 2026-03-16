@@ -18,11 +18,24 @@ With the same quality, Opus usually takes 15-25% less space than Ogg, which is e
 ## Plain HashLink usage
 
 ```haxe
-final decoder = new hlopus.Decoder(sys.io.File.getBytes("music.opus"));
-final pcm = decoder.decodeAll();
+final pcm = hlopus.Decoder.decodeFile("music.opus");
 ```
 
 `decodeAll()` returns interleaved PCM. The default format is 16-bit signed samples.
+
+If you want explicit control, use the decoder directly:
+
+```haxe
+final decoder = hlopus.Decoder.fromFile("music.opus");
+final pcm = decoder.decodeAll(hlopus.SampleFormat.F32);
+```
+
+For streaming-style reads:
+
+```haxe
+final decoder = new hlopus.Decoder(sys.io.File.getBytes("music.opus"));
+final chunk = decoder.readSamples(4096, hlopus.SampleFormat.I16);
+```
 
 ## Heaps usage
 
@@ -31,6 +44,12 @@ If Heaps is present, `.opus` files are recognized as `hxd.res.Sound`, so you can
 ```haxe
 final sound = hxd.Res.music;
 final channel = sound.play();
+```
+
+You can also create Heaps data manually:
+
+```haxe
+final data = hlopus.Decoder.toHeapsDataFromFile("music.opus");
 ```
 
 ## Build
