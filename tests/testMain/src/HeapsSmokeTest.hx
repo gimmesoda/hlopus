@@ -1,14 +1,12 @@
 import sys.FileSystem;
 
-final class HeapsSmokeTest extends hxd.App
-{
+final class HeapsSmokeTest extends hxd.App {
 	var channel:hxd.snd.Channel;
 	var startPos = 0.0;
 	var started = false;
 	var startupTime = 0.0;
 
-	override function init()
-	{
+	override function init() {
 		if (!FileSystem.exists("res/test.opus"))
 			fail("Missing test file: res/test.opus");
 
@@ -30,8 +28,7 @@ final class HeapsSmokeTest extends hxd.App
 		if (channel == null)
 			fail("sound.play() returned null");
 
-		channel.onEnd = () ->
-		{
+		channel.onEnd = () -> {
 			if (!started)
 				fail("Playback ended before position advanced");
 			Sys.println("[Heaps] PASS");
@@ -41,15 +38,13 @@ final class HeapsSmokeTest extends hxd.App
 		startPos = channel.position;
 	}
 
-	override function update(dt:Float)
-	{
+	override function update(dt:Float) {
 		startupTime += dt;
 
 		if (channel == null)
 			return;
 
-		if (!started && channel.position > startPos)
-		{
+		if (!started && channel.position > startPos) {
 			started = true;
 			Sys.println("[Heaps] playback started");
 		}
@@ -60,21 +55,18 @@ final class HeapsSmokeTest extends hxd.App
 		if (started && channel.position < 0)
 			fail("Playback position became invalid");
 
-		if (started && channel.duration > 0 && channel.position >= channel.duration)
-		{
+		if (started && channel.duration > 0 && channel.position >= channel.duration) {
 			Sys.println("[Heaps] PASS");
 			Sys.exit(0);
 		}
 	}
 
-	private function fail(message:String):Void
-	{
+	private function fail(message:String):Void {
 		Sys.println("[Heaps] FAIL: " + message);
 		Sys.exit(1);
 	}
 
-	private static function main()
-	{
+	private static function main() {
 		hxd.Res.initLocal();
 		new HeapsSmokeTest();
 	}

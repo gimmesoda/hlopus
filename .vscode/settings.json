@@ -8,5 +8,11 @@
 		"editor.formatOnSave": true,
 		"editor.defaultFormatter": "nadako.vshaxe"
 	},
-	"haxe.enableCompilationServer": false
+	"haxe.enableCompilationServer": false,
+
+	"haxecheckstyle.sourceFolders": [
+		"hlopus",
+		"hxd",
+		"tests"
+	]
 }

@@ -1,0 +1,35 @@
+{
+	"defaultSeverity": "INFO",
+	"checks": [
+		{
+			"type": "ArrowFunction",
+			"props": {
+				"allowCurlyBody": true,
+				"allowReturn": false
+			}
+		},
+		{
+			"type": "HexadecimalLiteral",
+			"props": {
+				"option": "lowerCase"
+			}
+		},
+		{
+			"type": "ModifierOrder",
+			"props": {
+				"modifiers": [
+					"PUBLIC_PRIVATE",
+					"STATIC",
+					"ABSTRACT",
+					"DYNAMIC",
+					"EXTERN",
+					"INLINE",
+					"FINAL",
+					"MACRO",
+					"OVERLOAD",
+					"OVERRIDE"
+				]
+			}
+		}
+	]
+}

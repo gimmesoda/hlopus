@@ -3,33 +3,42 @@ package hlopus;
 #if macro
 import haxe.macro.Compiler;
 import haxe.macro.Context;
+#if heaps
+import hxd.res.Config;
+#end
 
-class Boot
-{
-	public static function setup()
-	{
-		if (hasType("hxd.Res"))
-			Compiler.addMetadata("@:build(hlopus.Macro.buildRes())", "hxd.Res");
-		if (hasType("hxd.res.SoundFormat"))
-			Compiler.addMetadata("@:build(hlopus.Macro.buildSoundFormat())", "hxd.res.SoundFormat");
-		if (hasType("hxd.res.Sound"))
-			Compiler.addMetadata("@:build(hlopus.Macro.buildSound())", "hxd.res.Sound");
+/**
+	Macro bootstrap for Heaps Opus integration.
+
+	Call `hlopus.Boot.setup()` from your build macros to register `.opus`
+	resources as `hxd.res.Sound` and install the required sound patches.
+**/
+class Boot {
+	/**
+		Installs the Heaps resource and macro hooks for Opus support.
+	**/
+	public static function setup() {
+		#if (haxe_ver >= 5)
+		Context.onAfterInitMacros(() -> apply());
+		#else
+		apply();
+		#end
+
 		return null;
 	}
 
-	static function hasType(path:String):Bool
-	{
-		try
-		{
-			Context.getType(path);
-			return true;
-		}
-		catch (_:Dynamic)
-		{
-			return false;
-		}
+	private static function apply() {
+		#if heaps
+		Config.addExtension("opus", "hxd.res.Sound");
+		#end
+		Compiler.addMetadata("@:build(hlopus.Macro.buildSoundFormat())", "hxd.res.SoundFormat");
+		Compiler.addMetadata("@:build(hlopus.Macro.buildSound())", "hxd.res.Sound");
 	}
 }
 #else
+
+/**
+	Runtime placeholder for non-macro builds.
+**/
 class Boot {}
 #end

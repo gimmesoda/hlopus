@@ -3,31 +3,25 @@ import sys.io.File;
 import openal.AL;
 import openal.ALC;
 
-final class HashlinkSmokeTest
-{
-	static function checkALError(prefix:String):Void
-	{
+final class HashlinkSmokeTest {
+	static function checkALError(prefix:String):Void {
 		final err = AL.getError();
 		if (err != AL.NO_ERROR)
 			throw prefix + " failed: 0x" + StringTools.hex(err, 4);
 	}
 
-	static function cleanup(tmp:haxe.io.Bytes, source:openal.AL.Source, buffer:openal.AL.Buffer, context:openal.ALC.Context, device:openal.ALC.Device):Void
-	{
-		if (source.toInt() != 0)
-		{
+	static function cleanup(tmp:haxe.io.Bytes, source:openal.AL.Source, buffer:openal.AL.Buffer, context:openal.ALC.Context, device:openal.ALC.Device):Void {
+		if (source.toInt() != 0) {
 			AL.sourceStop(source);
 			AL.sourcei(source, AL.BUFFER, 0);
 			tmp.setInt32(0, source.toInt());
 			AL.deleteSources(1, tmp);
 		}
-		if (buffer.toInt() != 0)
-		{
+		if (buffer.toInt() != 0) {
 			tmp.setInt32(0, buffer.toInt());
 			AL.deleteBuffers(1, tmp);
 		}
-		if (context != null)
-		{
+		if (context != null) {
 			ALC.makeContextCurrent(null);
 			ALC.destroyContext(context);
 		}
@@ -35,8 +29,7 @@ final class HashlinkSmokeTest
 			ALC.closeDevice(device);
 	}
 
-	static function main()
-	{
+	static function main() {
 		var device:openal.ALC.Device = null;
 		var context:openal.ALC.Context = null;
 		var buffer = openal.AL.Buffer.ofInt(0);
@@ -44,20 +37,17 @@ final class HashlinkSmokeTest
 		final tmp = haxe.io.Bytes.alloc(4);
 
 		final dir = "res";
-		if (!FileSystem.exists(dir) || !FileSystem.isDirectory(dir))
-		{
+		if (!FileSystem.exists(dir) || !FileSystem.isDirectory(dir)) {
 			Sys.println("[HL] FAIL: missing res directory");
 			Sys.exit(1);
 		}
 
-		if (!FileSystem.exists(dir + "/test.opus"))
-		{
+		if (!FileSystem.exists(dir + "/test.opus")) {
 			Sys.println("[HL] FAIL: missing res/test.opus");
 			Sys.exit(1);
 		}
 
-		try
-		{
+		try {
 			final bytes = File.getBytes(dir + "/test.opus");
 			final decoder = new hlopus.Decoder(bytes);
 			final pcm = decoder.decodeAll(hlopus.SampleFormat.I16);
@@ -79,15 +69,13 @@ final class HashlinkSmokeTest
 				throw "could not open default OpenAL device";
 
 			context = ALC.createContext(device, null);
-			if (context == null)
-			{
+			if (context == null) {
 				ALC.closeDevice(device);
 				device = null;
 				throw "could not create OpenAL context";
 			}
 
-			if (!ALC.makeContextCurrent(context))
-			{
+			if (!ALC.makeContextCurrent(context)) {
 				ALC.destroyContext(context);
 				ALC.closeDevice(device);
 				context = null;
@@ -99,8 +87,7 @@ final class HashlinkSmokeTest
 			checkALError("alGenBuffers");
 			buffer = openal.AL.Buffer.ofInt(tmp.getInt32(0));
 
-			final format = switch (decoder.channels)
-			{
+			final format = switch (decoder.channels) {
 				case 1: AL.FORMAT_MONO16;
 				case 2: AL.FORMAT_STEREO16;
 				default: throw "unsupported channel count for OpenAL test: " + decoder.channels;
@@ -121,13 +108,11 @@ final class HashlinkSmokeTest
 
 			final startedAt = haxe.Timer.stamp();
 			var started = false;
-			while (true)
-			{
+			while (true) {
 				final state = AL.getSourcei(source, AL.SOURCE_STATE);
 				final offset = AL.getSourcei(source, AL.SAMPLE_OFFSET);
 
-				if (!started && offset > 0)
-				{
+				if (!started && offset > 0) {
 					started = true;
 					Sys.println("[HL] playback started");
 				}
@@ -148,8 +133,7 @@ final class HashlinkSmokeTest
 
 			Sys.println("[HL] PASS");
 		}
-		catch (e)
-		{
+		catch (e) {
 			cleanup(tmp, source, buffer, context, device);
 			Sys.println("[HL] FAIL: " + Std.string(e));
 			Sys.exit(1);
