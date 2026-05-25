@@ -1,5 +1,6 @@
--lib hlopenal
--lib hlopus
+-cp .
 -cp src
+-cp ../..
 -main HashlinkSmokeTest
--hl hl_smoke.hl
+-D hl_ver=1.15.0
+-hl test.hl

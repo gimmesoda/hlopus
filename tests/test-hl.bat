@@ -10,7 +10,7 @@ haxe test-hl.hxml
 if errorlevel 1 goto :fail
 
 echo [2/2] Running HL tests...
-hl hl_smoke.hl
+hl test.hl
 if errorlevel 1 goto :fail
 
 exit /b 0
